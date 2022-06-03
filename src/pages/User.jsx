@@ -4,14 +4,16 @@ import { Link } from 'react-router-dom';
 import Spinner from '../components/layout/Spinner';
 import GithubContext from '../context/github/GithubContext';
 import { useParams } from 'react-router-dom';
-
+import RepoList from '../components/repos/RepoList';
 function User() {
-  const { getUser, user, loading } = useContext(GithubContext);
+  const { getUser, user, loading, getUserRepos, repos } =
+    useContext(GithubContext);
 
   const params = useParams();
 
   useEffect(() => {
     getUser(params.login);
+    getUserRepos(params.login);
   }, []);
   // Destructring user object regarding its properties.
   const {
@@ -20,7 +22,6 @@ function User() {
     avatar_url,
     location,
     bio,
-    blog,
     twitter_username,
     login,
     html_url,
@@ -86,16 +87,7 @@ function User() {
                   <div className='text-lg stat-value'>{location}</div>
                 </div>
               )}
-              {/* {blog && (
-                <div className='stat'>
-                  <div className='stat-title text-md'>Website</div>
-                  <div className='text-lg stat-value'>
-                    <a href={websiteUrl} target='_blank' rel='noreferrer'>
-                      {websiteUrl}
-                    </a>
-                  </div>
-                </div>
-              )} */}
+
               {twitter_username && (
                 <div className='stat'>
                   <div className='stat-title text-md'>Twitter</div>
@@ -158,7 +150,7 @@ function User() {
           </div>
         </div>
 
-        {/* <RepoList repos={repos} /> */}
+        <RepoList repos={repos} />
       </div>
     </>
   );
