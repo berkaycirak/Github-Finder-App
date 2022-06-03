@@ -40,7 +40,7 @@ function User() {
     <>
       <div className='w-full mx-auto lg:w-10/12'>
         <div className='mb-4'>
-          <Link to='/' className='btn btn-ghost'>
+          <Link to='/' className='btn btn-outline'>
             Back To Search
           </Link>
         </div>
@@ -73,7 +73,7 @@ function User() {
                   href={html_url}
                   target='_blank'
                   rel='noreferrer'
-                  className='btn btn-outline'
+                  className='btn btn-primary'
                 >
                   Visit Github Profile
                 </a>
